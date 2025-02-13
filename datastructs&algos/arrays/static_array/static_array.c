@@ -10,8 +10,8 @@ typedef struct {
 void array_init(Array *arr, size_t initial_capacity) {
     arr->data = (int *)malloc(initial_capacity * sizeof(int));
     if (arr->data == NULL) {
-        printf("Memory allocation error!\n");
-        exit(1);
+        fprintf(stderr, "Memory allocation error!\n");
+        exit(EXIT_FAILURE);
     }
     arr->size = 0;
     arr->capacity = initial_capacity;
@@ -22,8 +22,8 @@ void array_append(Array *arr, int value) {
         arr->capacity *= 2;
         arr->data = (int *)realloc(arr->data, arr->capacity * sizeof(int));
         if (arr->data == NULL) {
-            printf("Memory allocation error!\n");
-            exit(1);
+            fprintf(stderr, "Memory allocation error!\n");
+            exit(EXIT_FAILURE);
         }
     }
     arr->data[arr->size++] = value;
